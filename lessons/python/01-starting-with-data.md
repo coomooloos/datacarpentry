@@ -206,8 +206,44 @@ which gives **output**
 [100]
 [100, 80]
 ```
-mns
+
+Now we can save data readed from csv file into variable:
+
+```python
+dat = pandas.read_csv("data/surveys.csv")
 ```
 
-**Output**
+This statement will not produce any output, becouse assignment doesn't display anything. If we want to print loaded data we can use just
+
+```python
+dat
+```
+## Manipulating data
+Now when we have our data in memory, we can statd doing things with it.
+First check data type of variable dat
+
+```python
+type(dat)
+dat.__class__
+dat.dtypes
+```
+
+The type function and __class__ attribute tell us that dat is <class 'pandas.core.frame.DataFrame'> in Python. This is similar to a spradsheet in excel. The dtypes function tells us what columns there are  and what type they are.
+
+### pandas.core.frame.DataFrame
+are data structure 
+
+TO DO!!
+
+### Indexing
+If we want to get a single value from the DataFrame we must provide an index to it in parentheses and use iget_value function.
+
+```python
+dat.iget_value(2,6)
+```
+
+which gives **output**
+```
+'F'
+```
 
