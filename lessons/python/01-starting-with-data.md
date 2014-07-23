@@ -236,10 +236,10 @@ are data structure
 TO DO!!
 
 ### Indexing
-If we want to get a single value from the DataFrame we must provide an index to it in parentheses and use iget_value function.
+If we want to get a single value from the DataFrame we must provide an index to it in square brackets and use iloc function.
 
 ```python
-dat.iget_value(2,6)
+dat.iloc[2,6]
 ```
 
 which gives **output**
@@ -247,3 +247,35 @@ which gives **output**
 'F'
 ```
 
+Python start indexing from 0. Index like (2, 6) selects a single element of an array. We can also select whole sections as well.
+We can select month, day and year columns of values like this:
+
+```python
+dat.iloc[1:3, 1:4]
+```
+which gives **output**
+```
+   month  day  year
+1      8   19  1977
+2      8   19  1977
+3      8   19  1977
+```
+
+Slice 1:4 means "Start at index 1 and go to index 4 not including 4."
+
+We can also use built-in function range to take regurally spaced rows and columns.
+In this example we get rows 1, 3 and column 1, 3 and 5
+```python
+dat.iloc[range(1, 7, 2), range(1, 7, 2)]
+```
+which gives **output**
+```
+   month  year species
+1      8  1977      DM
+3      8  1977      DM
+```
+
+__EXERCISES__
+
+
+## Calculating statistics
