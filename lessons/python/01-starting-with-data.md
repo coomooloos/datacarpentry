@@ -281,14 +281,8 @@ __EXERCISES__
 ## Calculating statistics
 
 
-change our data to file species.cvs
-
-```python
-dat = pandas.read_csv("data/species.csv")
-```
-
 We've gotten our data in Python, so that we can do some analytics with it.
-First, let's get a sense of our data in file species.csv.
+First, let's get a sense of our data in file surveys.csv
 We might for instance want to know how many animals we trapped in each plot, or how many of each species were caught.
 We can look at one column in diifferent ways. We can refere tha column by its number:
 
@@ -299,8 +293,8 @@ dat.iloc[:,7]
 or by name:
 
 ```python
-dat.species
-dat['species']
+dat.month
+dat['month']
 ```
 
 If you forget the column names, you can type
@@ -312,11 +306,12 @@ dat.columns.values
 which gives **output**:
 
 ```
-array(['species_id', 'genus', 'species', 'taxa'], dtype=object)
+array(['record_id', 'month', 'day', 'year', 'plot', 'species', 'sex', 'wgt'], dtype=object)
 ```
 
 
-So, let's get a list of all the species. The pandas.unique function tells us all the unique names in that column.
+So, let's get a list of all the species.
+The pandas.unique function tells us all the unique names in that column.
 
 ```python
 pandas.unique(dat.species)
@@ -325,6 +320,62 @@ pandas.unique(dat.species)
 Now let's see how many of each species we have:
 
 ```python
-dat.species_id.groupby(dat.species).nunique()
+dat.record_id.groupby(dat.species).nunique()
 ```
 
+We could even assign it to a variable and make it a DataFrame to make it easier to look at:
+
+```python
+species_table = dat.record_id.groupby(dat.species).nunique()
+```
+
+Maybe we also want to see how many animals were captured in each plot
+
+```python
+dat['plot'].groupby(dat.species).nunique()
+```
+
+Now we want to do some actual calculations with the data though.
+Let's calculate the average weight of all the animals. Python pandas has a finction describe, that give a lot of statistical informations, like mean, median, max, min, std and count. Describe can be olny used on numeric column.
+
+```python
+dat['wgt'].describe()
+```
+
+gives **output**
+
+```python
+count    32283.000000
+mean        42.672428
+std         36.631259
+min          4.000000
+25%         20.000000
+50%         37.000000
+75%         48.000000
+max        280.000000
+dtype: float64
+```
+
+Because data is in a vector, when we want to know how much of something we have we ask how long it is with the len() function.
+
+```python
+len(dat['wgt'])
+```
+
+## Statistics on subsets of data
+
+When analyzing data, though, we often want to look at partial statistics, such as the maximum value per species or the average value per plot.
+One way to do this is to select the data we want to create a new temporary array.
+
+```python
+dat[dat.species == 'DO']
+```
+
+We could see in our table from before that 'DO' had 3027 species.
+Let's check to see if that's what we have by checking the number of rows:
+
+```python
+dat.record_id.groupby(dat['species']).nunique()['DO']
+```
+
+## FUNCTIONS
