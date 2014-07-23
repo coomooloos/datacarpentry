@@ -280,6 +280,13 @@ __EXERCISES__
 
 ## Calculating statistics
 
+
+change our data to file species.cvs
+
+```python
+dat = pandas.read_csv("data/species.csv")
+```
+
 We've gotten our data in Python, so that we can do some analytics with it.
 First, let's get a sense of our data in file species.csv.
 We might for instance want to know how many animals we trapped in each plot, or how many of each species were caught.
@@ -309,14 +316,15 @@ array(['species_id', 'genus', 'species', 'taxa'], dtype=object)
 ```
 
 
-So, let's get a list of all the species. The 'unique' command tells us all the unique names in that column.
+So, let's get a list of all the species. The pandas.unique function tells us all the unique names in that column.
 
 ```python
-dat.species.unique
+pandas.unique(dat.species)
 ```
 
 Now let's see how many of each species we have:
 
 ```python
-len(dat.species.unique.im_self)
+len(pandas.unique(dat.species))
 ```
+
