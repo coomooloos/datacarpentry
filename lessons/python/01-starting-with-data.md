@@ -341,7 +341,6 @@ Let's calculate the average weight of all the animals. Python pandas has a finct
 ```python
 dat['wgt'].describe()
 ```
-
 gives **output**
 
 ```python
@@ -355,6 +354,17 @@ min          4.000000
 max        280.000000
 dtype: float64
 ```
+
+Also we can use just one of this functions:
+
+```python
+dat['wgt'].min()
+dat[wgt'].max()
+dat['wgt'].mean()
+dat['wgt'].std()
+dat['wgt'].count()
+```
+
 
 Because data is in a vector, when we want to know how much of something we have we ask how long it is with the len() function.
 
