@@ -279,3 +279,44 @@ __EXERCISES__
 
 
 ## Calculating statistics
+
+We've gotten our data in Python, so that we can do some analytics with it.
+First, let's get a sense of our data in file species.csv.
+We might for instance want to know how many animals we trapped in each plot, or how many of each species were caught.
+We can look at one column in diifferent ways. We can refere tha column by its number:
+
+```python
+dat.iloc[:,7]
+```
+
+or by name:
+
+```python
+dat.species
+dat['species']
+```
+
+If you forget the column names, you can type
+
+```python
+dat.columns.values
+```
+
+which gives **output**:
+
+```
+array(['species_id', 'genus', 'species', 'taxa'], dtype=object)
+```
+
+
+So, let's get a list of all the species. The 'unique' command tells us all the unique names in that column.
+
+```python
+dat.species.unique
+```
+
+Now let's see how many of each species we have:
+
+```python
+len(dat.species.unique.im_self)
+```
