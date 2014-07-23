@@ -325,6 +325,6 @@ pandas.unique(dat.species)
 Now let's see how many of each species we have:
 
 ```python
-len(pandas.unique(dat.species))
+dat.species_id.groupby(dat.species).nunique()
 ```
 
